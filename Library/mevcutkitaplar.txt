@@ -1,0 +1,13 @@
+1,anayurt oteli,yusuf atılgan
+2,serenad,zülfü livaneli
+3,suç ve ceza,dostoyevski
+4,tutunamayanlar,oğuz atay
+5,anna karenina1,tolstoy
+6,anna karenina2,tolstoy
+7,çalıkuşu,reşat nuri güntekin
+8,devlet ana,kemal tahir
+9,eylül,mehmet rauf
+10,gece,bilge karasu
+11,heba,hasan ali topbaş
+12,murtaza,orhan kemal
+13,yaşamak güzel şey be kardeşim,nazım hikmet
