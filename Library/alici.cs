@@ -1,17 +1,13 @@
-﻿using Kütüphane_sistemi3;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kütüphane_sistemi3
 {
     internal class alici
+    //kitap alabilir,kitapteslimi yapabilir
     {
-        static string DosyaYoluÜyeler = @"C:\Users\ASUS\Desktop\üyeler.txt";
-        static bool DogruGirisYapıldıMı = false;
+        static string DosyaYoluÜyeler = @"C:\Users\Beyza\Desktop\Library\Library\KayitliKullanicilar1.txt";
+        public static bool DogruGirisYapıldıMı = false;
 
         public static void UyeGirisi()
         {
@@ -22,19 +18,21 @@ namespace Kütüphane_sistemi3
 
 
             string satir;
-            StreamReader okumaNesnesi2 = new StreamReader(DosyaYoluÜyeler);
+            StreamReader okumaNesnesi2 = new StreamReader(DosyaYoluÜyeler);//mevcut kişiler dosyasını okuyacak
 
             while ((satir = okumaNesnesi2.ReadLine()) != null)
             {
                 string[] parcalar = satir.Split('*');
-                if (parcalar[0] == tc && parcalar[4] == sifre)
+                if (parcalar[0] == tc && parcalar[1] == sifre)//uyuyorsa zaten giriş yapmış olacak üye girişi olmuyorsa kayıt yapmak için break ile içinden çıkıcak ve kayıt ola gidicek.
                 {
                     Console.WriteLine("HOŞGELDİNİZ ! SAYIN " + parcalar[1]);
                     DogruGirisYapıldıMı = true;
+
+
                     break;
                 }
             }
-            Console.ReadLine();
+            Console.ReadLine();//??
 
             okumaNesnesi2.Close();
             if (DogruGirisYapıldıMı == false)
@@ -49,26 +47,25 @@ namespace Kütüphane_sistemi3
 
         }
 
+        //   ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
         public static void UyeKayıt()
         {
             string satir = "";
-            Console.Write("TC KİMLİK NUMARANIZ : ");
+            Console.Write("tc giriniz : ");
             string tc = Console.ReadLine();
-            Console.Write("ADINIZ : ");
+            Console.Write("adınız : ");
             string isim = Console.ReadLine();
-            Console.Write("SOYADINIZ : ");
-            string soyisim = Console.ReadLine();
-            Console.Write("TELEFON NUMARANIZ : ");
-            string telno = Console.ReadLine();
-            Console.Write("ŞİFRE BELİRLEYİNİZ : ");
+            Console.Write("soyadınız : ");
+            string soyisim = Console.ReadLine();          
+            Console.Write("şifre : ");
             string sifre1 = Console.ReadLine();
-            Console.Write("YENİ ŞİFRENİZİ TEKRAR GİRİNİZ : ");
+            Console.Write("şifre onayı : ");
             string sifre2 = Console.ReadLine();
             if (sifre1 == sifre2)
             {
-                satir = tc + "" + isim + "" + soyisim + "" + telno + "" + sifre1;
+                satir = tc + "" + isim + "" + soyisim + "" + "" + sifre1;
             }
             else
             {
@@ -79,7 +76,7 @@ namespace Kütüphane_sistemi3
                 string sifre4 = Console.ReadLine();
                 if (sifre3 == sifre4)
                 {
-                    satir = tc + "" + isim + "" + soyisim + "" + telno + "" + sifre3;
+                    satir = tc + "" + isim + "" + soyisim + ""  + "" + sifre3;//satir diye bir değişkende tek format halinde tuttum
                 }
                 else
                 {
@@ -94,11 +91,14 @@ namespace Kütüphane_sistemi3
             yazmaNesnesi.Close();
 
         }
+        //   ------------------------------------------------------------------------------------------------------------------------------------------------------
 
         public static void Kitapalma()
         {//once kitap adı ve yazarını girisn sonra dosyayo açsın okuma yapsın eğer varsa traih girdirsin ve kitabı alsın eğer yoksa hiç tarih fln istemeyip direkt kitap mevcut deği desin
 
             // Kitap bilgilerini gir
+
+
 
             Console.Write(" TC Kimlik no giriniz ");
             string tc = Console.ReadLine();
@@ -113,7 +113,7 @@ namespace Kütüphane_sistemi3
             int kitapnumarasi = Convert.ToInt32(Console.ReadLine());
 
 
-            string dosyayolu = @"C:\Users\Beyza\Desktop\Library\Library\mevcutkitaplar.txt";
+            string dosyayolu = @"C:\Users\Beyza\Desktop\Library\Library\mevcutkitaplar.txt";//mevcut kitapların dosyasını okuyacak ve ordan kitap alacak
             bool kitapmevcutmu = false;
 
             StreamReader okumanesnesi = new StreamReader(dosyayolu);
@@ -122,7 +122,7 @@ namespace Kütüphane_sistemi3
             {
 
                 string satir = okumanesnesi.ReadLine();
-                string[] parcalar = satir.Split(',');
+                string[] parcalar = satir.Split(',');//satiri splitliyoruz ve parcalar değişkenşne atıyoruz
 
                 if (parcalar[0] == tc.ToString() && parcalar[1] == kitapnumarasi.ToString() && parcalar[2] == kitapadi && parcalar[3] == kitapyazari)
                 {
@@ -135,6 +135,7 @@ namespace Kütüphane_sistemi3
 
             if (kitapmevcutmu == false)
                 Console.WriteLine("Maalesef kitap mevcut değil");
+
             else
             {
 
@@ -144,7 +145,7 @@ namespace Kütüphane_sistemi3
                 Console.Write("Kitap teslim tarihi (yyyy-MM-dd): ");
                 DateTime teslimtarihi = DateTime.Parse(Console.ReadLine());
 
-                // Teslim tarihi 30 günü geçiyor mu kontrol et
+                // Teslim tarihi 30 günü geçiyor mu kontrol et??
                 string kontrol = (teslimtarihi > alimtarihi.AddDays(30)) ? "Kitabı zamanında getirmediğiniz için cezalısınız bir kitap daha getiriniz" : "Zamanında teslim ettiğiniz için teşekkürler";
 
                 // Kitap bilgilerini tek satırda formatla
@@ -161,8 +162,12 @@ namespace Kütüphane_sistemi3
             }
 
             //kitap alma-iade etme metodu
+            //   ------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+        }
+        public static void kitapverme()
+        {
 
         }
     }

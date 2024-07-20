@@ -1,9 +1,5 @@
 ﻿using Library;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kütüphane_sistemi3
 {
@@ -11,12 +7,36 @@ namespace Kütüphane_sistemi3
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Yetkili girişi için 1 kullanıcı girişi için 2 yazar girişi için 3 tuşlayınız : ");
+
+            Console.WriteLine("Yetkili girişi için 1      /       kullanıcı girişi için 2  /      yazar girişi için 3 tuşlayınız : ");
             int tuşlanan = Convert.ToInt32(Console.ReadLine());
-            if (tuşlanan == 1)//1. kişi ile alaklaı bütün kodları metotoları buraya cağırcaksın
+            if (tuşlanan == 1)
             {
                 görevli.yetkiliGirisi();
-                
+                Console.WriteLine(" yazarın yazdığı kitabı onaylayıp ekletmek için 1 e  /   kitapteslim kontrolü için 2 ye    /   sadece var olan kitabı kitaplığa ekelemk için 3 e basınız");
+
+                int tercihyetkili = Convert.ToInt32(Console.ReadLine());
+
+                if (tercihyetkili == 1)
+                {
+                    görevli.Kitapkontrol();
+                    kitaplik.kitapekle();
+                    kitaplik.Kitapsirala();
+                    kitaplik.guncelsiraliliste();
+                }
+                else if (tercihyetkili == 2)
+                {
+                    görevli.Kitapvarmiyokmu();
+                }
+                else
+                {
+                    kitaplik.kitapekle();
+                    kitaplik.Kitapsirala();
+                    kitaplik.guncelsiraliliste();
+                }
+
+
+
             }
 
             else if (tuşlanan == 2)//2. kişi ile alaklaı bütün kodları metotoları buraya cağırcaksın
@@ -26,16 +46,37 @@ namespace Kütüphane_sistemi3
                 if (giris == 1)
                 {
                     alici.UyeGirisi();
-                    alici.Kitapalma();  
+                    if (alici.DogruGirisYapıldıMı == true)
+                    {
+                        Console.WriteLine("kitap almak istiyorsanız 1 i vermek istiyorsanız 2 yi tuşlayın");
+
+                        int basilan = Convert.ToInt32(Console.ReadLine());
+
+                        if (basilan == 1)
+                        {
+                            alici.Kitapalma();
+                        }
+                        else if (basilan == 2)
+                        {
+                            alici.kitapverme();
+                        }
+                        else
+                        {
+                            Console.Write("Yanlış tuşa bastınız ");
+                        }
+                    }
+
                 }
                 else if (giris == 2)
                 {
                     alici.UyeKayıt();
                 }
+
+
                 else if (giris == 3)//3. kişi ile alaklaı bütün kodları metotoları buraya cağırcaksın
                 {
                     yazar.yazarGiris();
-                    yazar.yaziyaz();
+                    yazar.kitapyaz();
                 }
                 else
                 {
@@ -49,9 +90,8 @@ namespace Kütüphane_sistemi3
 
 
 
-
         }
     }
 }
 
-
+ 

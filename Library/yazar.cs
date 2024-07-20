@@ -1,58 +1,63 @@
-﻿using Library;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Kütüphane_sistemi3
 {
     internal class yazar
     {
-        //sayfaları buraya yazın yapın
+        //sayfaları yazacak ve bir kitap olarak kitapekle yapacak,tek yazra var
 
+        public static string kitapadi = "";
+        public static string yazarAdı = "Yazar";
+        public static string yazarSifresi = "123456";
+        public static string icerik = "";
 
-        public static string yazarAdı = "YAZAR";
-        public static string yazarSifresi = "YAZAR1234";
 
         public static void yazarGiris()
         {
             Console.WriteLine("Yazar adını giriniz : ");
-            string YazarAdı = Console.ReadLine();
+            string yazarAdı = Console.ReadLine();
             Console.WriteLine("Şifre giriniz : ");
             string yazarŞifre = Console.ReadLine();
 
-            if (YazarAdı == yazarAdı && yazarŞifre == yazarSifresi)
+            if (yazarAdı == yazarAdı && yazarŞifre == yazarSifresi)
             {
                 Console.WriteLine("Giriş başarılı.");
             }
         }
+        //   ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-        //yazar kitap ekleyecek
-        public static void yaziyaz()
+        //yazar kitap yazacak
+        public static void kitapyaz()
         {
-            // Kitap bilgilerini gir
-            Console.Write("Kitap adı: ");
+            Console.WriteLine("kitap adını giriniz : ");
             string kitapadi = Console.ReadLine();
 
-            Console.Write("Kitap yazarı: ");
-            string kitapyazari = Console.ReadLine();
+            Console.WriteLine("Yazar adını giriniz : ");
+            string yazarAdı = Console.ReadLine();
 
-            // Kitap bilgilerini tek satırda formatla
-            string dosyalama = $"{kitapadi},{kitapyazari}";
+            Console.WriteLine("kitabı yaz  : "); //yazar istediği kadar yazabilir 80 kelime kontrolünü gözetmen yapacak
+            string icerik = Console.ReadLine();
 
-            // Dosyaya yaz
-            string dosyayolu = @"C:\Users\Beyza\Desktop\Library\Library\mevcutkitaplar.txt";
-            StreamWriter yazmanesnesi = new StreamWriter(dosyayolu, true);
-            yazmanesnesi.WriteLine(dosyalama);
+            string kitaphali = kitapadi + "," + yazarAdı + "," + icerik;
+
+            string dosya = @"C:\Users\Beyza\Desktop\Library\Library\kitap3.txt";
+
+
+            StreamWriter yazmanesnesi = new StreamWriter(dosya, true); // 'false' parametresi dosyanın içeriğini temizler
+            yazmanesnesi.WriteLine(kitaphali); // Her bir kitabı dosyaya yaz
             yazmanesnesi.Close();
 
 
-            Console.WriteLine("Kitap bilgileri dosyaya yazıldı.");
-
+            Console.WriteLine("Güncel sıralı liste dosyası başarıyla oluşturuldu ve yazıldı.");
         }
+
+
+
+
     }
 
-
 }
+
+
+

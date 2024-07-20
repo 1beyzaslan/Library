@@ -1,0 +1,1 @@
+Yapay zeka, makinelerin insan benzeri görevleri gerçekleştirmesini, deneyiminden öğrenmesini, yeni girdilere uyum sağlamasını mümkün kılan sistemlerdir. Yapay zeka ile temelde insan yetkinliklerinin geliştirilmesi ve bunlara katkı sağlanması amaçlanır.
